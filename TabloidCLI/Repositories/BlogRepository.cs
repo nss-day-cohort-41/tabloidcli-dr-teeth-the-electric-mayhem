@@ -90,7 +90,7 @@ namespace TabloidCLI
                         {
                             blog = new Blog()
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                                Id = reader.GetInt32(reader.GetOrdinal("blog.Id")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Url = reader.GetString(reader.GetOrdinal("Url"))
                             };
@@ -143,11 +143,13 @@ namespace TabloidCLI
                                               
                                          WHERE id = @id";
 
+                    cmd.Parameters.AddWithValue("@id", blog.Id);
                     cmd.Parameters.AddWithValue("@title", blog.Title);
                     cmd.Parameters.AddWithValue("@url", blog.Url);
 
                     cmd.ExecuteNonQuery();
                 }
+
             }
         }
 

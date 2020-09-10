@@ -63,10 +63,21 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
+
             List<Blog> blogs = _blogRepository.GetAll();
             foreach (Blog blog in blogs)
             {
+
                 Console.WriteLine(blog);
+
+                //Attempting Formatting of the lists output below:
+                //Console.WriteLine("{0,-20} {1,5}\n", "Title", "Url");
+                //for (int ctr = 0; ctr < blogs.Count; ctr++)
+                //Console.WriteLine("{0,-20} {1,5:N1}", blog.Title[ctr], blog.Url[ctr]);
+                //Another Attempt:
+                //string str = "";
+                //char pad = '.';
+                //Console.WriteLine(str.PadLeft(2, pad), (blog));
             }
         }
 

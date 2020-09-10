@@ -9,7 +9,7 @@ namespace TabloidCLI.UserInterfaceManagers
     {
         private IUserInterfaceManager _parentUI;
         private BlogRepository _blogRepository;
-        private PostRepository _postRepository;
+        //private PostRepository _postRepository;
         private TagRepository _tagRepository;
         private int _blogId;
 
