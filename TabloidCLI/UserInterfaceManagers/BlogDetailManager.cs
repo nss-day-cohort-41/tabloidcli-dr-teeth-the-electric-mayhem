@@ -17,7 +17,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             _parentUI = parentUI;
             _blogRepository = new BlogRepository(connectionString);
-            _postRepository = new PostRepository(connectionString);
+            //_postRepository = new PostRepository(connectionString);
             _tagRepository = new TagRepository(connectionString);
             _blogId = blogId;
         }

@@ -63,7 +63,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void List()
         {
-
+            Console.WriteLine("----------------------------YOUR LIST OF BLOGZ:---------------------------------------");
             List<Blog> blogs = _blogRepository.GetAll();
             foreach (Blog blog in blogs)
             {
@@ -79,6 +79,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 //char pad = '.';
                 //Console.WriteLine(str.PadLeft(2, pad), (blog));
             }
+            Console.WriteLine("------------------------------:END BLOG LIST------------------------------------------");
         }
 
         private Blog Choose(string prompt = null)
@@ -95,7 +96,9 @@ namespace TabloidCLI.UserInterfaceManagers
             for (int i = 0; i < blogs.Count; i++)
             {
                 Blog blog = blogs[i];
+                
                 Console.WriteLine($" {i + 1}) {blog.Title}");
+                
             }
             Console.Write("> ");
 
@@ -117,18 +120,24 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("new blog");
             Blog blog = new Blog();
 
+            //After declaring the type of object and creating a new one, we can read the user input and set it to our objects parameters 
             Console.Write("Title for the Blog: ");
             blog.Title = Console.ReadLine();
 
             Console.Write("Insert the URL: ");
             blog.Url = Console.ReadLine();
-
-
+            
+            //CRUD insert method called and shown
             _blogRepository.Insert(blog);
+
+            Console.WriteLine("Looks like youve succesfully added a blog post, take a look at your list to double check!");
+            Console.WriteLine("----------------------------DR.Tooth did his thang---------------------------------------");
+            Console.WriteLine("----------------------------...please continue---------------------------------------");
         }
 
         private void Edit()
         {
+            //Similar process to insert....accept it relies heavily on the identification of a specific ID parameter...
             Blog blogToEdit = Choose("Which blog would you like to edit?");
             if (blogToEdit == null)
             {
@@ -149,14 +158,21 @@ namespace TabloidCLI.UserInterfaceManagers
                 blogToEdit.Url = Url;
             }
             _blogRepository.Update(blogToEdit);
+            Console.WriteLine("You just edited your blog post, great WORK!");
+            Console.WriteLine("----------------------------DR.Tooth did his thang---------------------------------------");
+            Console.WriteLine("----------------------------...please continue---------------------------------------");
         }
 
         private void Remove()
+            //ID parameter is key here as well
         {
             Blog blogToDelete = Choose("Which Blog Entry would you like to remove?");
             if (blogToDelete != null)
             {
                 _blogRepository.Delete(blogToDelete.Id);
+                Console.WriteLine("Looks like ya deleted your blog post.....we dont have to tell nobodi");
+                Console.WriteLine("----------------------------DR.Tooth did his thang---------------------------------------");
+                Console.WriteLine("----------------------------...please continue---------------------------------------");
             }
         }
     }
