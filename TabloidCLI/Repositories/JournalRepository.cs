@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.Data.SqlClient;
 using TabloidCLI.Models;
 using TabloidCLI.Repositories;
 
-namespace TabloidCLI
+namespace TabloidCLI.UserInterfaceManagers
 {
     public class JournalRepository : DatabaseConnector, IRepository<Journal>
     {
@@ -33,7 +32,7 @@ namespace TabloidCLI
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Title = reader.GetString(reader.GetOrdinal("Title")),
                             Content = reader.GetString(reader.GetOrdinal("Content")),
-                            CreationDate = reader.GetDateTime(reader.GetOrdinal("CreateDateTime"))
+                            CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime"))
                         };
                         journals.Add(journal);
                     }
@@ -69,7 +68,7 @@ namespace TabloidCLI
                             {
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Content = reader.GetString(reader.GetOrdinal("Content")),
-                                CreationDate = reader.GetDateTime(reader.GetOrdinal("CreateDateTime"))
+                                CreateDateTime = reader.GetDateTime(reader.GetOrdinal("CreateDateTime"))
                             };
                         }
                     }
@@ -90,7 +89,7 @@ namespace TabloidCLI
                                                     VALUES (@title, @content, @createDateTime)";
                     cmd.Parameters.AddWithValue("@title", journal.Title);
                     cmd.Parameters.AddWithValue("@content", journal.Content);
-                    cmd.Parameters.AddWithValue("@createDateTime", journal.CreationDate);
+                    cmd.Parameters.AddWithValue("@createDateTime", journal.CreateDateTime);
 
                     cmd.ExecuteNonQuery();
                 }
@@ -105,14 +104,15 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"UPDATE Journal
-                                        SET Title = @title,
-                                            Content = @content
-                                            CreationDate = @createDateTime
+                                        SET Title = @Title,
+                                            Content = @Content,
+                                            CreateDateTime = @CreateDateTime
                                         WHERE id = @id";
 
-                    cmd.Parameters.AddWithValue("@title", journal.Title);
-                    cmd.Parameters.AddWithValue("@content", journal.Content);
-                    cmd.Parameters.AddWithValue("@createDateTime", journal.CreationDate);
+                    cmd.Parameters.AddWithValue("@Title", journal.Title);
+                    cmd.Parameters.AddWithValue("@Content", journal.Content);
+                    cmd.Parameters.AddWithValue("@CreateDateTime", journal.CreateDateTime);
+                    cmd.Parameters.AddWithValue("@id", journal.Id);
 
                     cmd.ExecuteNonQuery();
                 }

@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using TabloidCLI.Models;
-using TabloidCLI.Repositories;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
@@ -58,7 +55,12 @@ namespace TabloidCLI.UserInterfaceManagers
             List<Journal> journals = _journalRepository.GetAll();
             foreach (Journal journal in journals)
             {
-                Console.WriteLine(journal);
+                Console.WriteLine($@"
+        Title: {journal.Title}
+        Entry: {journal.Content}
+                                        
+        Created: {journal.CreateDateTime}
+        ------------------------------------");
             }
         }
 
@@ -98,20 +100,37 @@ namespace TabloidCLI.UserInterfaceManagers
             Journal journal = new Journal();
 
             Console.WriteLine("Please enter in the Title of the new entry");
-            journal.Title = Console.ReadLine();
+            string title = Console.ReadLine();
+            if(!string.IsNullOrEmpty(title))
+                {
+                    journal.Title = title;
+                } 
+            else
+                {
+                    Console.WriteLine("You must enter in a Title");
+                    return;
+                }
 
             Console.WriteLine("Please enter the journal entry");
-            journal.Content = Console.ReadLine();
+            string content = Console.ReadLine();
+            if(!string.IsNullOrEmpty(content))
+                {
+                    journal.Content = content;
+                }
+            else
+                {
+                    Console.WriteLine("You must enter in content for your entry");
+                    return;
+                }
 
-            Console.WriteLine("Please enter in the date of entry(YYYY-MM-DD)");
-            journal.CreationDate = Convert.ToDateTime(Console.ReadLine());
+            journal.CreateDateTime = DateTime.Now;
 
             _journalRepository.Insert(journal);
         }
 
         private void Edit()
         {
-            Journal journalToEdit = Choose("which journal entry would you like ot edit?");
+            Journal journalToEdit = Choose("which journal entry would you like to edit?");
             if(journalToEdit == null)
             {
                 return;
@@ -119,19 +138,20 @@ namespace TabloidCLI.UserInterfaceManagers
 
             Console.WriteLine();
             Console.WriteLine("New title (blank to leave unchanged: ");
-            string title = Console.ReadLine();
-            if(!string.IsNullOrWhiteSpace(title))
-            {
-                journalToEdit.Title = title;
-            }
-            Console.WriteLine("New content(blank to leave unchanged: ");
-            string content = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(content))
-            {
-                journalToEdit.Content = content;
-            }
+                string title = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(title))
+                {
+                    journalToEdit.Title = title;
+                }
+                Console.WriteLine("New content(blank to leave unchanged: ");
+                string content = Console.ReadLine();
+                if (!string.IsNullOrWhiteSpace(content))
+                {
+                    journalToEdit.Content = content;
+                }
+                journalToEdit.CreateDateTime = journalToEdit.CreateDateTime;
 
-            _journalRepository.Update(journalToEdit);
+                _journalRepository.Update(journalToEdit);
         }
 
         private void Remove()
