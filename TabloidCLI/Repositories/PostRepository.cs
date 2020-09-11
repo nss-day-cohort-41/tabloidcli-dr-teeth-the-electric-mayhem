@@ -59,8 +59,8 @@ namespace TabloidCLI
                                                t.Id AS TagId,
                                                t.Name
                                           FROM Post p 
-                                               LEFT JOIN PostTag at on p.Id = at.PostId
-                                               LEFT JOIN Tag t on t.Id = at.TagId
+                                               LEFT JOIN PostTag pt on p.Id = pt.PostId
+                                               LEFT JOIN Tag t on t.Id = pt.TagId
                                          WHERE p.id = @id";
 
                     cmd.Parameters.AddWithValue("@id", id);
@@ -74,20 +74,20 @@ namespace TabloidCLI
                         {
                             post = new Post()
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("PostId")),
+                                Id = reader.GetInt32(reader.GetOrdinal("post.Id")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Url = reader.GetString(reader.GetOrdinal("Url")),
                             };
                         }
 
-                    //    if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
-                      //  {
-                        //    post.Tags.Add(new Tag()
-                          //  {
-                            //    Id = reader.GetInt32(reader.GetOrdinal("TagId")),
-                              //  Name = reader.GetString(reader.GetOrdinal("Name")),
-                            //});
-                        //}
+                        if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
+                        {
+                            post.Tags.Add(new Tag()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("TagId")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                            });
+                        }
                     }
 
                     reader.Close();
@@ -158,7 +158,7 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO PostTag (PostId, TagId)
-                                                       VALUES (@postId, @tagId)";
+                                                       VALUES (@Id, @tagId)";
                     cmd.Parameters.AddWithValue("@postId", post.Id);
                     cmd.Parameters.AddWithValue("@tagId", tag.Id);
                     cmd.ExecuteNonQuery();
