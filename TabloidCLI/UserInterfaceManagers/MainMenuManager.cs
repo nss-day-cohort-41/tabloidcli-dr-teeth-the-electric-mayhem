@@ -4,7 +4,7 @@ namespace TabloidCLI.UserInterfaceManagers
 {
     public class MainMenuManager : IUserInterfaceManager
     {
-        private const string CONNECTION_STRING = 
+        private const string CONNECTION_STRING =
             @"Data Source=localhost\SQLEXPRESS;Database=TabloidCLI;Integrated Security=True";
 
         public IUserInterfaceManager Execute()
@@ -57,6 +57,100 @@ namespace TabloidCLI.UserInterfaceManagers
                                                                                                                                                             
 ");
             Console.WriteLine("What a performance. What a dang show. Wow, lets...begin:");
+            Console.WriteLine("Oh wait....Choose your preffered color:");
+
+            Console.Write("Press any key to continue");
+            Console.ReadKey();
+            Console.WriteLine("Console Color Selection:");
+            Console.WriteLine(" 1) Cyanz me Crazy");
+            Console.WriteLine(" 2) Blue Boi");
+            Console.WriteLine(" 3) Dark Yellow Gorilla ");
+            Console.WriteLine(" 4) Allll I see is Red");
+            Console.WriteLine(" 0) Keeps whats mines, original ");
+            //Console.Write("> ");
+            string colorchoicez = Console.ReadLine();
+            switch (colorchoicez)
+            {
+
+                case "1":
+                    {
+                        Console.BackgroundColor = ConsoleColor.Cyan;
+                        Console.ForegroundColor = ConsoleColor.Green;
+                        Console.Clear();
+                    }
+                    break;
+                case "2":
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Clear();
+                    }
+                    break;
+                case "3":
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkYellow;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.Clear();
+                    }
+                    break;
+                case "4":
+                    {
+                        Console.BackgroundColor = ConsoleColor.DarkRed;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        Console.Clear();
+                    }
+                    break;
+                case "0":
+                    {
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.Clear();
+                    }
+                    break;
+                default:
+                    Console.WriteLine("Cmon now, pick a color");
+                    Console.WriteLine("Invalid Selection");
+                    return this;
+            };
+            Console.WriteLine(@"
+██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗     █████╗  ██████╗  █████╗ ██╗███╗   ██╗                                                    
+██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝    ██╔══██╗██╔════╝ ██╔══██╗██║████╗  ██║                                                    
+██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗      ███████║██║  ███╗███████║██║██╔██╗ ██║                                                    
+██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝      ██╔══██║██║   ██║██╔══██║██║██║╚██╗██║                                                    
+╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗    ██║  ██║╚██████╔╝██║  ██║██║██║ ╚████║██╗██╗██╗                                           
+ ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚═╝╚═╝                                           
+                                                                                                                                                            
+██████╗ ██████╗    ████████╗███████╗███████╗████████╗██╗  ██╗                                                                                               
+██╔══██╗██╔══██╗   ╚══██╔══╝██╔════╝██╔════╝╚══██╔══╝██║  ██║                                                                                               
+██║  ██║██████╔╝      ██║   █████╗  █████╗     ██║   ███████║                                                                                               
+██║  ██║██╔══██╗      ██║   ██╔══╝  ██╔══╝     ██║   ██╔══██║                                                                                               
+██████╔╝██║  ██║██╗   ██║   ███████╗███████╗   ██║   ██║  ██║                                                                                               
+╚═════╝ ╚═╝  ╚═╝╚═╝   ╚═╝   ╚══════╝╚══════╝   ╚═╝   ╚═╝  ╚═╝                                                                                               
+                                                                                                                                                            
+ █████╗ ███╗   ██╗██████╗                                                                                                                                   
+██╔══██╗████╗  ██║██╔══██╗                                                                                                                                  
+███████║██╔██╗ ██║██║  ██║                                                                                                                                  
+██╔══██║██║╚██╗██║██║  ██║                                                                                                                                  
+██║  ██║██║ ╚████║██████╔╝                                                                                                                                  
+╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝                                                                                                                                   
+                                                                                                                                                            
+████████╗██╗  ██╗███████╗    ███████╗██╗     ███████╗ ██████╗████████╗██████╗ ██╗ ██████╗    ███╗   ███╗ █████╗ ██╗   ██╗██╗  ██╗███████╗███╗   ███╗███████╗
+╚══██╔══╝██║  ██║██╔════╝    ██╔════╝██║     ██╔════╝██╔════╝╚══██╔══╝██╔══██╗██║██╔════╝    ████╗ ████║██╔══██╗╚██╗ ██╔╝██║  ██║██╔════╝████╗ ████║██╔════╝
+   ██║   ███████║█████╗      █████╗  ██║     █████╗  ██║        ██║   ██████╔╝██║██║         ██╔████╔██║███████║ ╚████╔╝ ███████║█████╗  ██╔████╔██║███████╗
+   ██║   ██╔══██║██╔══╝      ██╔══╝  ██║     ██╔══╝  ██║        ██║   ██╔══██╗██║██║         ██║╚██╔╝██║██╔══██║  ╚██╔╝  ██╔══██║██╔══╝  ██║╚██╔╝██║╚════██║
+   ██║   ██║  ██║███████╗    ███████╗███████╗███████╗╚██████╗   ██║   ██║  ██║██║╚██████╗    ██║ ╚═╝ ██║██║  ██║   ██║   ██║  ██║███████╗██║ ╚═╝ ██║███████║
+   ╚═╝   ╚═╝  ╚═╝╚══════╝    ╚══════╝╚══════╝╚══════╝ ╚═════╝   ╚═╝   ╚═╝  ╚═╝╚═╝ ╚═════╝    ╚═╝     ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝╚══════╝
+                                                                                                                                                            
+ ██████╗ ██████╗ ███╗   ██╗███████╗ ██████╗ ██╗     ███████╗     █████╗ ██████╗ ██████╗ ██╗                                                                 
+██╔════╝██╔═══██╗████╗  ██║██╔════╝██╔═══██╗██║     ██╔════╝    ██╔══██╗██╔══██╗██╔══██╗██║                                                                 
+██║     ██║   ██║██╔██╗ ██║███████╗██║   ██║██║     █████╗      ███████║██████╔╝██████╔╝██║                                                                 
+██║     ██║   ██║██║╚██╗██║╚════██║██║   ██║██║     ██╔══╝      ██╔══██║██╔═══╝ ██╔═══╝ ╚═╝                                                                 
+╚██████╗╚██████╔╝██║ ╚████║███████║╚██████╔╝███████╗███████╗    ██║  ██║██║     ██║     ██╗                                                                 
+ ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚══════╝    ╚═╝  ╚═╝╚═╝     ╚═╝     ╚═╝                                                                 
+                                                                                                                                                            
+");
+            Console.WriteLine("Alrighty..... now that we figured that out.......");
+            Console.WriteLine("--------------------------------------------------------------------------------------");
             Console.WriteLine("Main Menu");
             Console.WriteLine(" 1) Journal Management");
             Console.WriteLine(" 2) Blog Management");
@@ -65,6 +159,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine(" 5) Tag Management");
             Console.WriteLine(" 6) Search by Tag");
             Console.WriteLine(" 0) Exit");
+            Console.WriteLine("--------------------------------------------------------------------------------------");
 
             Console.Write("> ");
             string choice = Console.ReadLine();
