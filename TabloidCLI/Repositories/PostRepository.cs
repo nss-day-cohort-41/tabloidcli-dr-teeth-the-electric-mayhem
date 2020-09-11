@@ -19,8 +19,11 @@ namespace TabloidCLI
                 {
                     cmd.CommandText = @"SELECT id,
                                                Title,
-                                               Url,
-                                          FROM Post";
+                                               URL,
+                                               PublishDateTime,
+                                               AuthorId,
+                                               BlogId
+                                          FROM POST";
 
                     List<Post> posts = new List<Post>();
 
@@ -31,7 +34,7 @@ namespace TabloidCLI
                         {
                             Id = reader.GetInt32(reader.GetOrdinal("Id")),
                             Title = reader.GetString(reader.GetOrdinal("Title")),
-                            Url = reader.GetString(reader.GetOrdinal("Url")),
+                            Url = reader.GetString(reader.GetOrdinal("Url"))
                         };
                         posts.Add(post);
                     }
@@ -53,9 +56,12 @@ namespace TabloidCLI
                     cmd.CommandText = @"SELECT p.Id AS PostId,
                                                p.Title,
                                                p.Url,
-                                               
+                                               t.Id AS TagId,
+                                               t.Name
                                           FROM Post p 
-                                              ";
+                                               LEFT JOIN PostTag at on p.Id = at.PostId
+                                               LEFT JOIN Tag t on t.Id = at.TagId
+                                         WHERE p.id = @id";
 
                     cmd.Parameters.AddWithValue("@id", id);
 
@@ -74,7 +80,14 @@ namespace TabloidCLI
                             };
                         }
 
-                        
+                    //    if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
+                      //  {
+                        //    post.Tags.Add(new Tag()
+                          //  {
+                            //    Id = reader.GetInt32(reader.GetOrdinal("TagId")),
+                              //  Name = reader.GetString(reader.GetOrdinal("Name")),
+                            //});
+                        //}
                     }
 
                     reader.Close();
@@ -137,6 +150,38 @@ namespace TabloidCLI
             }
         }
 
-        
+        public void InsertTag(Post post, Tag tag)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"INSERT INTO PostTag (PostId, TagId)
+                                                       VALUES (@postId, @tagId)";
+                    cmd.Parameters.AddWithValue("@postId", post.Id);
+                    cmd.Parameters.AddWithValue("@tagId", tag.Id);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void DeleteTag(int postId, int tagId)
+        {
+            using (SqlConnection conn = Connection)
+            {
+                conn.Open();
+                using (SqlCommand cmd = conn.CreateCommand())
+                {
+                    cmd.CommandText = @"DELETE FROM PostTag 
+                                         WHERE PostId = @postid AND 
+                                               TagId = @tagId";
+                    cmd.Parameters.AddWithValue("@postId", postId);
+                    cmd.Parameters.AddWithValue("@tagId", tagId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

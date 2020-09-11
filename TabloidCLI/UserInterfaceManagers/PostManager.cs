@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using TabloidCLI.Models;
-using TabloidCLI.Repositories;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
@@ -22,7 +21,8 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             Console.WriteLine("Post Management Menu");
             Console.WriteLine(" 1) List Posts");
-            Console.WriteLine(" 2) Add Post");
+            Console.WriteLine(" 2) Post Details");
+            Console.WriteLine(" 3) Add Post");
             Console.WriteLine(" 4) Edit Post");
             Console.WriteLine(" 5) Remove Post");
             Console.WriteLine(" 0) Go Back");
@@ -35,6 +35,16 @@ namespace TabloidCLI.UserInterfaceManagers
                     List();
                     return this;
                 case "2":
+                    Post post = Choose();
+                    if (post == null)
+                    {
+                        return this;
+                    }
+                    else
+                    {
+                        return new PostDetailManager(this, _connectionString, post.Id);
+                    }
+                case "3":
                     Add();
                     return this;
                 case "4":
@@ -99,12 +109,8 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Title: ");
             post.Title = Console.ReadLine();
 
-            Console.Write("URL: ");
+            Console.Write("Url: ");
             post.Url = Console.ReadLine();
-
-          //  Console.Write("Publication Date: ");
-          //  post.PublishDateTime = Console.ReadLine();
-          //have to convert to dateTime and add author/blog IDs.
 
             _postRepository.Insert(post);
         }
@@ -118,19 +124,18 @@ namespace TabloidCLI.UserInterfaceManagers
             }
 
             Console.WriteLine();
-            Console.Write("New Title (blank to leave unchanged: ");
+            Console.Write("New title (blank to leave unchanged: ");
             string title = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(title))
             {
                 postToEdit.Title = title;
             }
-            Console.Write("New URL (blank to leave unchanged: ");
+            Console.Write("New Url (blank to leave unchanged: ");
             string url = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(url))
             {
                 postToEdit.Url = url;
             }
-           
 
             _postRepository.Update(postToEdit);
         }
