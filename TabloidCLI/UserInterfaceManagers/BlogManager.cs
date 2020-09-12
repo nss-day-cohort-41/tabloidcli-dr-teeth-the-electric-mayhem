@@ -26,6 +26,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine(" 4) Edit a Blog");
             Console.WriteLine(" 5) Remove a Blog");
             Console.WriteLine(" 0) Go Back");
+            //bool repeat = false;
 
             Console.Write("> ");
             string choice = Console.ReadLine();
@@ -55,6 +56,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     return this;
                 case "0":
                     return _parentUI;
+                    
                 default:
                     Console.WriteLine("Invalid Selection");
                     return this;
