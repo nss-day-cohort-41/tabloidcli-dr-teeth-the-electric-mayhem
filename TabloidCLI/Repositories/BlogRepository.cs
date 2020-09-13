@@ -23,7 +23,7 @@ namespace TabloidCLI
                     using (SqlCommand cmd = conn.CreateCommand())
                     {
                         // Here we setup the command with the SQL we want to execute before we execute it.
-                        cmd.CommandText = @"SELECT id, Title, URL FROM Blog";
+                        cmd.CommandText = @"SELECT id, Title, Url FROM Blog";
 
                         // A list to hold the rooms we retrieve from the database.
                         List<Blog> blogs = new List<Blog>();
@@ -79,7 +79,7 @@ namespace TabloidCLI
                                                LEFT JOIN Tag t on t.Id = bt.TagId
                                          WHERE b.id = @id";
 
-                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("b.@id", id);
 
                     Blog blog = null;
 
@@ -90,7 +90,7 @@ namespace TabloidCLI
                         {
                             blog = new Blog()
                             {
-                                Id = reader.GetInt32(reader.GetOrdinal("blog.Id")),
+                                Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
                                 Title = reader.GetString(reader.GetOrdinal("Title")),
                                 Url = reader.GetString(reader.GetOrdinal("Url"))
                             };

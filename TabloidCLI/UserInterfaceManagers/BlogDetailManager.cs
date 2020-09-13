@@ -9,7 +9,7 @@ namespace TabloidCLI.UserInterfaceManagers
     {
         private IUserInterfaceManager _parentUI;
         private BlogRepository _blogRepository;
-        //private PostRepository _postRepository;
+        private PostRepository _postRepository;
         private TagRepository _tagRepository;
         private int _blogId;
 
@@ -17,7 +17,7 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             _parentUI = parentUI;
             _blogRepository = new BlogRepository(connectionString);
-            //_postRepository = new PostRepository(connectionString);
+            _postRepository = new PostRepository(connectionString);
             _tagRepository = new TagRepository(connectionString);
             _blogId = blogId;
         }
@@ -28,7 +28,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine($"{blog.Title} Details");
             Console.WriteLine(" 1) View");
             //Not sure How to tie this one in, will need to refactor based on priority 
-            //Console.WriteLine(" 2) View Blog Posts");
+            Console.WriteLine(" 2) View Blog Posts");
             Console.WriteLine(" 3) Add Tag");
             Console.WriteLine(" 4) Remove Tag");
             Console.WriteLine(" 0) Go Back");
@@ -40,9 +40,9 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     View();
                     return this;
-                //case "2":
-                //    ViewBlogPosts();
-                //    return this;
+                case "2":
+                    ViewBlogPosts();
+                    return this;
                 case "3":
                     AddTag();
                     return this;
@@ -71,15 +71,15 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine();
         }
 
-        //private void ViewBlogPosts()
-        //{
-        //    List<Post> posts = _postRepository.GetByAuthor(_authorId);
-        //    foreach (Post post in posts)
-        //    {
-        //        Console.WriteLine(post);
-        //    }
-        //    Console.WriteLine();
-        //}
+        private void ViewBlogPosts()
+        {
+            List<Post> posts = _postRepository.GetByBlog(_blogId);
+            foreach (Post post in posts)
+            {
+                Console.WriteLine(post);
+            }
+            Console.WriteLine();
+        }
 
         private void AddTag()
         {
