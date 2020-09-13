@@ -79,7 +79,7 @@ namespace TabloidCLI
                                                LEFT JOIN Tag t on t.Id = bt.TagId
                                          WHERE b.id = @id";
 
-                    cmd.Parameters.AddWithValue("b.@id", id);
+                    cmd.Parameters.AddWithValue("@id", id);
 
                     Blog blog = null;
 

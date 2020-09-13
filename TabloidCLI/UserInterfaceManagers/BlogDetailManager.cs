@@ -5,6 +5,7 @@ using TabloidCLI.Repositories;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
+    //Not much changed here from the authors example, VIEWBLOGPOSTS is where it gets a little tricky. Reach out for questions....Currently I am unable to add a tag via DETAILS BRANCH
     internal class BlogDetailManager : IUserInterfaceManager
     {
         private IUserInterfaceManager _parentUI;
@@ -60,23 +61,33 @@ namespace TabloidCLI.UserInterfaceManagers
         private void View()
         {
             Blog blog = _blogRepository.Get(_blogId);
-            Console.WriteLine($"Title of the Blog: {blog.Title}");
-            Console.WriteLine($"URL associatted: {blog.Url}");
-            Console.WriteLine("Time to give you a TAG LIST");
-            Console.WriteLine("Tags:");
+            Console.WriteLine("------------------------------------------");
+            Console.WriteLine("----------DETAILS ON BLOG:-----------");
+            Console.WriteLine($"Title of The Blog: {blog.Title}");
+            Console.WriteLine($"URL Associatted: {blog.Url}");
+            Console.WriteLine("~~~~~~~~>Time to give you a TAG LIST");
+            Console.WriteLine("~~~~~~~~~~~>Tags:");
+            
             foreach (Tag tag in blog.Tags)
             {
                 Console.WriteLine(" " + tag);
             }
             Console.WriteLine();
+            Console.WriteLine("------------------------------------------");
         }
 
         private void ViewBlogPosts()
         {
+            //  2 Get callz to pull the info needed on both tables, from Manager joinin
+            Blog blog = _blogRepository.Get(_blogId);
             List<Post> posts = _postRepository.GetByBlog(_blogId);
             foreach (Post post in posts)
             {
-                Console.WriteLine(post);
+                Console.WriteLine("--------------------------------------------------------------");
+                Console.WriteLine($"----------------{blog.Title}:POST DETAILS:-------------------");
+                Console.WriteLine($"-----------------------POST DETAILS--------------------------");
+                Console.WriteLine($"POST TITLE:{post.Title} via AUTHOR: {post.Author.FullName}");
+                Console.WriteLine("--------------------------------------------------------------");
             }
             Console.WriteLine();
         }
@@ -102,7 +113,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 Tag tag = tags[choice - 1];
                 _blogRepository.InsertTag(blog, tag);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Invalid Selection. Won't add any tags.");
             }
@@ -129,7 +140,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 Tag tag = tags[choice - 1];
                 _blogRepository.DeleteTag(blog.Id, tag.Id);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 Console.WriteLine("Invalid Selection. Won't remove any tags.");
             }
