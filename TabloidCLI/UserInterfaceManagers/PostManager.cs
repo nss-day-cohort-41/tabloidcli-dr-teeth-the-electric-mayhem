@@ -39,11 +39,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     List();
                     return this;
-<<<<<<< HEAD
 
-=======
-                
->>>>>>> f333ccc2878ed18ecf17268b1538b9828be249f4
                 case "2":
                     Add();
                     return this;
@@ -74,11 +70,7 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> f333ccc2878ed18ecf17268b1538b9828be249f4
 
         private void Add()
         {
@@ -91,7 +83,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("URL: ");
             post.Url = Console.ReadLine();
 
-            Console.Write("PublishDateTime: ");
+            Console.Write("PublishDateTime:(FORMAT:00/00/0000) ");
             post.PublishDateTime = DateTime.Parse(Console.ReadLine());
             Console.WriteLine("Choose a Author to associate: ");
             List<Author> authors = _authorRepository.GetAll();
