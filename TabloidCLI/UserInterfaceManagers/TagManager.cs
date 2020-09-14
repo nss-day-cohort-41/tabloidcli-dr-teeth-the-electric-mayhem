@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using TabloidCLI.Models;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
     public class TagManager : IUserInterfaceManager
     {
         private readonly IUserInterfaceManager _parentUI;
+        private TagRepository _tagRepository;
 
         public TagManager(IUserInterfaceManager parentUI, string connectionString)
         {
             _parentUI = parentUI;
+            _tagRepository = new TagRepository(connectionString);
         }
 
         public IUserInterfaceManager Execute()
@@ -36,7 +40,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "4":
                     Remove();
                     return this;
-                case "0":
+                case "0":/**/
                     return _parentUI;
                 default:
                     Console.WriteLine("Invalid Selection");
@@ -46,12 +50,16 @@ namespace TabloidCLI.UserInterfaceManagers
          // " throw new NotImplementedException(); " is an exception for a method that has not been developed.
         private void List()
         {
-            throw new NotImplementedException();
+            List<Tag> tags = _tagRepository.GetAll();
+            foreach (Tag tag in tags)
+            {
+                Console.WriteLine(tag);
+            }
         }
 
         private void Add()
         {
-            throw new NotImplementedException();
+            
         }
 
         private void Edit()

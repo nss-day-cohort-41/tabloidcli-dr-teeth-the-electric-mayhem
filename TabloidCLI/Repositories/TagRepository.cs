@@ -46,6 +46,12 @@ namespace TabloidCLI
 
         public void Insert(Tag tag)
         {
+            throw new NotImplementedException();
+        }
+
+/*
+        public void Insert(Tag tag)
+        {
             {
                 // connectionString links us to SQL, like an address to the database
                 using (SqlConnection conn = Connection)
@@ -57,9 +63,8 @@ namespace TabloidCLI
                     {
                         // this is the content of the command (the cargo) 
                         // **PRO-TIP: check your SQL query here**
-                        cmd.CommandText = @"INSERT INTO Tag (AuthorId, TagId)
+                        cmd.CommandText = @"INSERT INTO Tag (TagId)
                                                        VALUES (@authorId, @tagId)";
-                        cmd.Parameters.AddWithValue("@authorId", author.Id);
                         cmd.Parameters.AddWithValue("@tagId", tag.Id);
                         //ExecuteNonQuery used for executing queries that does not return any data. 
                         //It is used to execute the sql statements like update, insert, delete etc. ExecuteNonQuery executes the command and returns the number of rows affected.
@@ -67,7 +72,7 @@ namespace TabloidCLI
                     }
                 }
             }
-        }
+        }*/
 
         public void Update(Tag tag)
         {
@@ -76,8 +81,12 @@ namespace TabloidCLI
 
         public void Delete(int id)
         {
-            public void DeleteTag(int authorId, int tagId)
-            {
+            throw new NotImplementedException();
+        }
+
+        /*public void DeleteTag(int id)
+        {
+            
                 // connectionString links us to SQL, like an address to the database
                 using (SqlConnection conn = Connection)
                 {
@@ -87,28 +96,17 @@ namespace TabloidCLI
                     {
                         // this is the content of the command (the cargo) 
                         // **PRO-TIP: check your SQL query here**
-                        cmd.CommandText = @"DELETE FROM AuthorTAg 
-                                         WHERE AuthorId = @authorid AND 
-                                               TagId = @tagId";
-                        cmd.Parameters.AddWithValue("@authorId", authorId);
-                        cmd.Parameters.AddWithValue("@tagId", tagId);
+                        cmd.CommandText = @"DELETE FROM Tag 
+                                              WHERE Id = @id;
+                        cmd.Parameters.AddWithValue("@Id", id);
                         //ExecuteNonQuery used for executing queries that does not return any data. 
                         //It is used to execute the sql statements like update, insert, delete etc. ExecuteNonQuery executes the command and returns the number of rows affected.
                         cmd.ExecuteNonQuery();
                     }
                 }
-            }
-        }
-
-
-
-
-        
-    }
-
-
-
-    public SearchResults<Author> SearchAuthors(string tagName)
+            
+        }*/
+        public SearchResults<Author> SearchAuthors(string tagName)
         {
             using (SqlConnection conn = Connection)
             {
