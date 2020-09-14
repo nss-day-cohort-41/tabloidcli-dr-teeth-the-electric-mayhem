@@ -43,7 +43,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     return this;
             }
         }
-
+         // " throw new NotImplementedException(); " is an exception for a method that has not been developed.
         private void List()
         {
             throw new NotImplementedException();
