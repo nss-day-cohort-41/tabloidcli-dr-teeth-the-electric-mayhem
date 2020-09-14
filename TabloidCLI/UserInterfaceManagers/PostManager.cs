@@ -39,7 +39,11 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "1":
                     List();
                     return this;
+<<<<<<< HEAD
 
+=======
+                
+>>>>>>> f333ccc2878ed18ecf17268b1538b9828be249f4
                 case "2":
                     Add();
                     return this;
@@ -70,7 +74,11 @@ namespace TabloidCLI.UserInterfaceManagers
             }
         }
 
+<<<<<<< HEAD
 
+=======
+        
+>>>>>>> f333ccc2878ed18ecf17268b1538b9828be249f4
 
         private void Add()
         {
