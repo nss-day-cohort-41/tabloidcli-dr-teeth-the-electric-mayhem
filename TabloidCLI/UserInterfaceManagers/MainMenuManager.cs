@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace TabloidCLI.UserInterfaceManagers
 {
     public class MainMenuManager : IUserInterfaceManager
@@ -56,6 +57,7 @@ namespace TabloidCLI.UserInterfaceManagers
  ╚═════╝ ╚═════╝ ╚═╝  ╚═══╝╚══════╝ ╚═════╝ ╚══════╝╚══════╝    ╚═╝  ╚═╝╚═╝     ╚═╝     ╚═╝                                                                 
                                                                                                                                                             
 ");
+<<<<<<< HEAD
             Console.WriteLine("What a performance. What a dang show. Wow, lets...begin:");
             Console.WriteLine("Oh wait....Choose your preffered color:");
             Console.Write("Press any key to continue");
@@ -120,14 +122,19 @@ namespace TabloidCLI.UserInterfaceManagers
  ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝    ╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝╚═╝  ╚═══╝╚═╝╚═╝╚═╝                                                                                                                                                                                                      
 ");
             Console.WriteLine("Alrighty..... now that we figured that out............................................");
+=======
+
+            
+>>>>>>> 6dd3cc67816df5d66324c1343feda27955dc474d
             Console.WriteLine("--------------------------------------------------------------------------------------");
             Console.WriteLine("Main Menu");
-            Console.WriteLine(" 1) Journal Management");
-            Console.WriteLine(" 2) Blog Management");
-            Console.WriteLine(" 3) Author Management");
-            Console.WriteLine(" 4) Post Management");
-            Console.WriteLine(" 5) Tag Management");
-            Console.WriteLine(" 6) Search by Tag");
+            Console.WriteLine(" 1) Pick Tha Mood via a Color Scheme");
+            Console.WriteLine(" 2) Journal Management");
+            Console.WriteLine(" 3) Blog Management");
+            Console.WriteLine(" 4) Author Management");
+            Console.WriteLine(" 5) Post Management");
+            Console.WriteLine(" 6) Tag Management");
+            Console.WriteLine(" 7) Search by Tag");
             Console.WriteLine(" 0) Exit");
             Console.WriteLine("--------------------------------------------------------------------------------------");
 
@@ -135,14 +142,15 @@ namespace TabloidCLI.UserInterfaceManagers
             string choice = Console.ReadLine();
             switch (choice)
             {
-                case "1": return new JournalManager(this, CONNECTION_STRING);
-                case "2": return new BlogManager(this, CONNECTION_STRING);
-                case "3": return new AuthorManager(this, CONNECTION_STRING);
-                case "4": throw new NotImplementedException();
-                case "5": return new TagManager(this, CONNECTION_STRING);
-                case "6": return new SearchManager(this, CONNECTION_STRING);
+                case "1": return new ColorOFConsoleManager(this, CONNECTION_STRING);
+                case "2": return new JournalManager(this, CONNECTION_STRING);
+                case "3": return new BlogManager(this, CONNECTION_STRING);
+                case "4": return new AuthorManager(this, CONNECTION_STRING);
+                case "5": throw new NotImplementedException();
+                case "6": return new TagManager(this, CONNECTION_STRING);
+                case "7": return new SearchManager(this, CONNECTION_STRING);
                 case "0":
-                    Console.WriteLine("Good bye");
+                    Console.WriteLine("Good bye, feel free to come visit us anytime!");
                     Console.WriteLine(@"
 ............................................________........................
 ....................................,.-‘”...................``~.,..................
