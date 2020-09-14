@@ -78,10 +78,28 @@ namespace TabloidCLI.UserInterfaceManagers
             Post post = new Post();
 
             Console.Write("Title: ");
-            post.Title = Console.ReadLine();
+            string title = Console.ReadLine();
+            if(!string.IsNullOrEmpty(title))
+            {
+                post.Title = title;
+            }
+            else
+            {
+                Console.WriteLine("You must enter a title!");
+                return;
+            }
 
             Console.Write("URL: ");
-            post.Url = Console.ReadLine();
+            string url = Console.ReadLine();
+            if(!string.IsNullOrEmpty(url))
+            {
+                post.Url = url;
+            }
+            else
+            {
+                Console.WriteLine("You must enter a URL");
+                return;
+            }
 
             post.PublishDateTime = DateTime.Now;
             Console.WriteLine("Choose a Author to associate: ");
