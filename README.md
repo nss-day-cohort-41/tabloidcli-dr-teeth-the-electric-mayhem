@@ -1,5 +1,15 @@
 # Tabloid CLI
 
+<br/>
+<p align="center">
+    <a >
+        <img width="50%" src="https://res.cloudinary.com/triggsumms/image/upload/v1600103350/Dr.Teeth/dgmcht7ucddbbixc58px.png"  alt="Teeth logo">
+    </a>
+</p>
+
+<br/>
+
+
 ## Authors
 
 Team: Dr. Teeth & The Electric Mayhem - Trigg Summs, Jonathan Riley, Rob Mixon, Lacey Walker.
