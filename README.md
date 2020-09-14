@@ -2,7 +2,7 @@
 
 ## Authors
 
-Team: Dr. Teeth & The Electric Mayhem - Trigg Summs, Jonathan Riley, Rob Mixon, Laey Walker.
+Team: Dr. Teeth & The Electric Mayhem - Trigg Summs, Jonathan Riley, Rob Mixon, Lacey Walker.
 
 ## The Story
 
@@ -31,7 +31,7 @@ In order to test the new business idea, we'll create a [Proof of Concept (POC)](
 For our POC, we will build a command line app in C# and save our data in SQL Server.
 
 
-##Installation & Usage
+## Installation & Usage
 
 Steps to get started:
 
@@ -40,7 +40,7 @@ Steps to get started:
 3. Use command 'dotnet run' to run the app in your terminal. 
 4. Follow the numbered prompts to run through the application as intended. 
 
-#Technology Used
+## Technology Used
 This project utilizes the following: 
   C#
   SQL
