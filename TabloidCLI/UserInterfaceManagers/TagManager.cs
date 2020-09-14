@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using TabloidCLI.Models;
 
+
 namespace TabloidCLI.UserInterfaceManagers
 {
     public class TagManager : IUserInterfaceManager
     {
         private readonly IUserInterfaceManager _parentUI;
         private TagRepository _tagRepository;
+
 
         public TagManager(IUserInterfaceManager parentUI, string connectionString)
         {
