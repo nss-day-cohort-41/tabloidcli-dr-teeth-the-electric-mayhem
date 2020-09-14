@@ -13,6 +13,8 @@ namespace TabloidCLI.UserInterfaceManagers
         private TagRepository _tagRepository;
         private int _authorId;
 
+        public PostRepository PostRepository { get => _postRepository; set => _postRepository = value; }
+
         public AuthorDetailManager(IUserInterfaceManager parentUI, string connectionString, int authorId)
         {
             _parentUI = parentUI;
