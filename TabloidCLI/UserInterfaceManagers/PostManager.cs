@@ -83,8 +83,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("URL: ");
             post.Url = Console.ReadLine();
 
-            Console.Write("PublishDateTime: ");
-            post.PublishDateTime = DateTime.Parse(Console.ReadLine());
+            post.PublishDateTime = DateTime.Now;
             Console.WriteLine("Choose a Author to associate: ");
             List<Author> authors = _authorRepository.GetAll();
             foreach (Author author in authors)
@@ -156,12 +155,9 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 postToEdit.Url = URL;
             }
-            Console.Write("New Publish Date and Time (blank to leave unchanged: ");
-            string publishDateTime = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(publishDateTime))
-            {
-                postToEdit.PublishDateTime = DateTime.Parse(publishDateTime);
-            }
+
+                postToEdit.PublishDateTime = postToEdit.PublishDateTime;
+
             Console.WriteLine("Choose a new Author to associate (blank to leave unchanged: ");
             List<Author> authors = _authorRepository.GetAll();
 
